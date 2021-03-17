@@ -1,6 +1,6 @@
 import React from 'react';
 import{StyleSheet, TouchableOpacity, Text,View} from 'react-native';
-import{COLORS} from "../config/colors"
+
 const FlatButton = ( props ) => {
     return(
         <TouchableOpacity>
@@ -17,7 +17,7 @@ button:{
     borderRadius:8,
     paddingVertical:14,
     paddingHorizontal:10,
-    backgroundColor:COLORS.primaryColor,
+    backgroundColor:'#fff',
 },
 buttonText:{
     color:'black',
