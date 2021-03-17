@@ -1,5 +1,6 @@
 import React from "react";
 import { Text, View, StyleSheet } from "react-native";
+import { COLORS } from "../config/colors";
 import Input from "../components/Input";
 
 const LoginScreen = () => {
@@ -14,7 +15,7 @@ const LoginScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: COLORS.primaryBackground,
     alignItems: "center",
     justifyContent: "center",
   },
