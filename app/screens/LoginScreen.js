@@ -2,12 +2,14 @@ import React from "react";
 import { Text, View, StyleSheet } from "react-native";
 import { COLORS } from "../config/colors";
 import Input from "../components/Input";
+import FlatButton from "../components/button"
 
 const LoginScreen = () => {
   return (
     <View style={styles.container}>
-      <Input name="login" />
+      <Input name="username" />
       <Input name="password" />
+      <FlatButton text="login"/>
     </View>
   );
 };
