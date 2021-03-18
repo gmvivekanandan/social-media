@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, StyleSheet, Pressable, Image } from "react-native";
+import { Text, View, StyleSheet, Pressable } from "react-native";
 import { COLORS } from "../config/colors";
 import Input from "../components/Input";
 import FlatButton from "../components/button";
