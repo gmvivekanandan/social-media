@@ -1,20 +1,35 @@
-import React from "react";
-import { View, Text, TextInput, StyleSheet } from "react-native";
+import React, { useState } from "react";
+import { View, StyleSheet } from "react-native";
+import OutlineInput from "react-native-outline-input";
+import { COLORS } from "../config/colors";
 
 const Input = (props) => {
-  var name = props.name;
-  return <TextInput style={styles.inputStyle} placeholder={name} />;
+  const [email, setEmail] = useState("");
+
+  const { label, isPassword } = props;
+
+  return (
+    <View style={styles.container}>
+      <OutlineInput
+        label={label}
+        value={email}
+        onChangeText={(email) => setEmail(email)}
+        secureTextEntry={isPassword}
+        height={52}
+        activeValueColor={COLORS.secondaryTextColor}
+        activeBorderColor={COLORS.primaryColor}
+        activeLabelColor={COLORS.primaryColor}
+        passiveBorderColor="grey"
+        passiveLabelColor="grey"
+        passiveValueColor={COLORS.secondaryTextColor}
+      />
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({
-  inputStyle: {
-    height: 40,
-    width: "90%",
-    padding: 10,
-    borderWidth: 1,
-    borderColor: "grey",
-    borderRadius: 10,
-    margin: 5,
+  container: {
+    width: "100%",
   },
 });
 
