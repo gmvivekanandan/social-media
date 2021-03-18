@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, StyleSheet, Pressable } from "react-native";
+import { Text, View, StyleSheet, Pressable, Image } from "react-native";
 import { COLORS } from "../config/colors";
 import Input from "../components/Input";
 import FlatButton from "../components/button";
@@ -12,6 +12,7 @@ const LoginScreen = () => {
         <Text style={styles.subHeading}>Sign In to continue.</Text>
       </View>
       <View style={styles.textBoxContainer}>
+        <Text>{}</Text>
         <Input label="Username" isPassword={false} />
         <Text>{}</Text>
         <Input label="Password" isPassword={true} />
