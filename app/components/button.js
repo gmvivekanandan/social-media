@@ -3,9 +3,10 @@ import { StyleSheet, TouchableOpacity, Text, View } from "react-native";
 import { COLORS } from "../config/colors";
 
 const FlatButton = (props) => {
+  const { text, onPress } = props;
   return (
-    <TouchableOpacity style={styles.button}>
-      <Text style={styles.buttonText}>{props.text}</Text>
+    <TouchableOpacity style={styles.button} onPress={onPress}>
+      <Text style={styles.buttonText}>{text}</Text>
     </TouchableOpacity>
   );
 };

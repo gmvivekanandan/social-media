@@ -1,12 +1,13 @@
 import React from "react";
 import { Text, View, StyleSheet, Pressable } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { COLORS } from "../config/colors";
 import Input from "../components/Input";
 import FlatButton from "../components/button";
 
-const LoginScreen = () => {
+const LoginScreen = ({ navigation }) => {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.headingContainer}>
         <Text style={styles.mainHeading}>Welcome,</Text>
         <Text style={styles.subHeading}>Sign In to continue.</Text>
@@ -31,13 +32,13 @@ const LoginScreen = () => {
       <View style={styles.signupContainer}>
         <Pressable
           onPress={() => {
-            console.log("Sign Up");
+            navigation.navigate("signup");
           }}
         >
           <Text style={styles.signupText}>Sign Up</Text>
         </Pressable>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -72,6 +73,7 @@ const styles = StyleSheet.create({
   signupContainer: {
     justifyContent: "center",
     alignItems: "center",
+    marginBottom: -25,
   },
   signupText: {
     color: COLORS.primaryColor,

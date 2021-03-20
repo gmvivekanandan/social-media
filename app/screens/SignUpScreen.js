@@ -1,45 +1,43 @@
 import React from "react";
-import { View, Text, StyleSheet, Pressable, Image} from "react-native";
+import { View, Text, StyleSheet, Pressable } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import Input from "../components/Input";
 import FlatButton from "../components/button";
-import {COLORS} from "../config/colors";
+import { COLORS } from "../config/colors";
 
-
-const SignUpScreen = () => {
+const SignUpScreen = ({ navigation }) => {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.headingContainer}>
         <Text style={styles.mainHeading}>Create Account,</Text>
         <Text style={styles.subHeading}>Sign Up to get started!</Text>
       </View>
       <View style={styles.textBoxContainer}>
         <Text>{}</Text>
-        <Input label="Fullname" isPassword={false} />
-        <Text>{}</Text>
         <Input label="Email ID" isPassword={false} />
         <Text>{}</Text>
         <Input label="Password" isPassword={true} />
-        
       </View>
       <View style={styles.buttonContainer}>
-        <FlatButton text="Register" />
+        <FlatButton
+          text="Register"
+          onPress={() => {
+            navigation.navigate("profilesetup");
+          }}
+        />
       </View>
       <View style={styles.signinContainer}>
-      
-      <Text>I'm already a member,</Text>
-      <Pressable
+        <Pressable
           onPress={() => {
-            console.log("Sign In");
+            navigation.navigate("login");
           }}
         >
-          
-         <Text style={styles.signinText}>Sign In</Text>
+          <Text style={styles.signinText}>Sign In</Text>
         </Pressable>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
-      
 
 const styles = StyleSheet.create({
   container: {
@@ -65,7 +63,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  
+
   signinContainer: {
     justifyContent: "center",
     alignItems: "center",
@@ -76,5 +74,3 @@ const styles = StyleSheet.create({
 });
 
 export default SignUpScreen;
-
-
