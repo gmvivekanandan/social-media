@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Image, StyleSheet, Text, View } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 import Icon from "react-native-vector-icons/AntDesign";
-import Input from "../components/Input";
 
 const Post = () => {
+  const [iconColor, seticonColor] = useState("black");
+  const [likePressed, setlikePressed] = useState(false);
+
   return (
     <View style={styles.container}>
       <View style={styles.topSection}>
@@ -13,11 +15,20 @@ const Post = () => {
           style={styles.profileImage}
         />
         <View style={styles.innerTextContainer}>
-          <Text>Name</Text>
-          <Text>Time</Text>
+          <Text style={styles.profileName}>Name</Text>
+          <Text style={styles.postTime}>Time</Text>
         </View>
         <View style={styles.iconContainer}>
-          <Icon name="heart" size={20} color="red" />
+          <Icon
+            name="heart"
+            size={20}
+            color={iconColor}
+            style={styles.likeIcon}
+            onPress={() => {
+              likePressed ? seticonColor("black") : seticonColor("red");
+              setlikePressed(!likePressed);
+            }}
+          />
         </View>
       </View>
       <View style={styles.midSection}>
@@ -48,17 +59,21 @@ const styles = StyleSheet.create({
   topSection: {
     flexDirection: "row",
     marginBottom: 5,
+    marginRight: 15,
   },
   innerTextContainer: {
     flexDirection: "column",
     justifyContent: "center",
     marginRight: 20,
   },
+  profileName: {
+    fontWeight: "bold",
+  },
   profileImage: {
     width: 50,
     height: 50,
     borderRadius: 25,
-    marginRight: 20,
+    marginRight: 15,
   },
   iconContainer: {
     justifyContent: "center",

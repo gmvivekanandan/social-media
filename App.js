@@ -27,7 +27,11 @@ export default function App() {
           component={ProfileSetupScreen}
           options={{ headerShown: true }}
         />
-        <Stack.Screen name="home" component={HomeScreen} />
+        <Stack.Screen
+          name="home"
+          component={HomeScreen}
+          options={{ headerShown: false }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
