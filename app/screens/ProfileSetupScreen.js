@@ -5,7 +5,7 @@ import { COLORS } from "../config/colors";
 import Input from "../components/Input";
 import FlatButton from "../components/button";
 
-const ProfileSetupScreen = () => {
+const ProfileSetupScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.profileImageContainer}>
@@ -21,7 +21,12 @@ const ProfileSetupScreen = () => {
         <Input label="Username" isPassword={false} />
       </View>
       <View style={styles.submitButtonContainer}>
-        <FlatButton text="Submit" />
+        <FlatButton
+          text="Submit"
+          onPress={() => {
+            navigation.navigate("home");
+          }}
+        />
       </View>
     </SafeAreaView>
   );
