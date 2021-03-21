@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
   mainHeading: {
     fontWeight: "bold",
     fontSize: 32,
+    color: COLORS.primaryColor,
   },
   subHeading: {
     fontWeight: "bold",

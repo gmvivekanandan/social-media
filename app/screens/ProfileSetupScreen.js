@@ -45,7 +45,7 @@ const ProfileSetupScreen = ({ navigation }) => {
           source={{
             uri: imageSelected
               ? image
-              : "https://lh3.googleusercontent.com/proxy/EdwL_vgajplSmk-bVtJ5uool26wxjsC7bmbKPp-Hw3MgrOsMjSPpMdM1Lj6gfOcaOxHl-hNyXPZ3FjsKJAAc4Nh_emabimJt_MvuyakxNarOwCzSchTGX3Y",
+              : "https://i.dlpng.com/static/png/5065892-my-profile-icon-png-327283-free-icons-library-profile-icon-png-500_500_preview.png",
           }}
           style={styles.profileImage}
         />

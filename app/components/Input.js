@@ -4,16 +4,14 @@ import OutlineInput from "react-native-outline-input";
 import { COLORS } from "../config/colors";
 
 const Input = (props) => {
-  const [email, setEmail] = useState("");
-
-  const { label, isPassword } = props;
+  const { label, isPassword, valueFromInput, onChangeText } = props;
 
   return (
     <View style={styles.container}>
       <OutlineInput
         label={label}
-        value={email}
-        onChangeText={(email) => setEmail(email)}
+        value={valueFromInput}
+        onChangeText={onChangeText}
         secureTextEntry={isPassword}
         height={52}
         activeValueColor={COLORS.secondaryTextColor}

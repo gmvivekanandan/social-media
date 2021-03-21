@@ -5,7 +5,11 @@ import { COLORS } from "../config/colors";
 const FlatButton = (props) => {
   const { text, onPress } = props;
   return (
-    <TouchableOpacity style={styles.button} onPress={onPress}>
+    <TouchableOpacity
+      style={styles.button}
+      activeOpacity={0.85}
+      onPress={onPress}
+    >
       <Text style={styles.buttonText}>{text}</Text>
     </TouchableOpacity>
   );

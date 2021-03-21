@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Input from "../components/Input";
@@ -6,6 +6,9 @@ import FlatButton from "../components/button";
 import { COLORS } from "../config/colors";
 
 const SignUpScreen = ({ navigation }) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.headingContainer}>
@@ -14,15 +17,30 @@ const SignUpScreen = ({ navigation }) => {
       </View>
       <View style={styles.textBoxContainer}>
         <Text>{}</Text>
-        <Input label="Email ID" isPassword={false} />
+        <Input
+          label="Email ID"
+          isPassword={false}
+          valueFromInput={email}
+          onChangeText={(email) => {
+            setEmail(email);
+          }}
+        />
         <Text>{}</Text>
-        <Input label="Password" isPassword={true} />
+        <Input
+          label="Password"
+          isPassword={true}
+          valueFromInput={password}
+          onChangeText={(password) => {
+            setPassword(password);
+          }}
+        />
       </View>
       <View style={styles.buttonContainer}>
         <FlatButton
           text="Register"
           onPress={() => {
             navigation.navigate("profilesetup");
+            console.log(email, password);
           }}
         />
       </View>
@@ -49,6 +67,7 @@ const styles = StyleSheet.create({
   mainHeading: {
     fontWeight: "bold",
     fontSize: 32,
+    color: COLORS.primaryColor,
   },
   subHeading: {
     fontWeight: "bold",
