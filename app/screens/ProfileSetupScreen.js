@@ -1,19 +1,55 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import * as ImagePicker from "expo-image-picker";
 import { COLORS } from "../config/colors";
 import Input from "../components/Input";
 import FlatButton from "../components/button";
 
 const ProfileSetupScreen = ({ navigation }) => {
+  const [image, setImage] = useState(null);
+  const [imageSelected, setimageSelected] = useState(false);
+
+  useEffect(() => {
+    (async () => {
+      if (Platform.OS !== "web") {
+        const {
+          status,
+        } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+        if (status !== "granted") {
+          alert("Sorry, we need camera roll permissions to make this work!");
+        }
+      }
+    })();
+  }, []);
+
+  const pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    console.log(result);
+
+    if (!result.cancelled) {
+      setImage(result.uri);
+      setimageSelected(true);
+    }
+  };
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.profileImageContainer}>
         <Image
-          source={require("../assets/icon.png")}
+          source={{
+            uri: imageSelected
+              ? image
+              : "https://lh3.googleusercontent.com/proxy/EdwL_vgajplSmk-bVtJ5uool26wxjsC7bmbKPp-Hw3MgrOsMjSPpMdM1Lj6gfOcaOxHl-hNyXPZ3FjsKJAAc4Nh_emabimJt_MvuyakxNarOwCzSchTGX3Y",
+          }}
           style={styles.profileImage}
         />
-        <Pressable>
+        <Pressable onPress={pickImage}>
           <Text style={styles.uploadImageText}>Upload image</Text>
         </Pressable>
       </View>
