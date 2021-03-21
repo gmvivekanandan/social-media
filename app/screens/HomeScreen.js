@@ -3,7 +3,7 @@ import { StyleSheet, View, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import Post from "../components/Post";
 
-const HomeScreen = () => {
+const HomeScreen = ({ route }) => {
   return (
     <SafeAreaView>
       <ScrollView>

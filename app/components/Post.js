@@ -3,7 +3,7 @@ import { Image, StyleSheet, Text, View } from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 import Icon from "react-native-vector-icons/AntDesign";
 
-const Post = () => {
+const Post = (props) => {
   const [iconColor, seticonColor] = useState("black");
   const [likePressed, setlikePressed] = useState(false);
 
