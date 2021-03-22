@@ -1,13 +1,42 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, Pressable } from "react-native";
+import { View, Text, StyleSheet, Pressable, LogBox } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { firebase } from "../config/FireBaseConfig";
 import Input from "../components/Input";
 import FlatButton from "../components/button";
 import { COLORS } from "../config/colors";
 
+LogBox.ignoreLogs(["Setting a timer"]);
+
 const SignUpScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const onSubmit = () => {
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then((response) => {
+        const uid = response.user.uid;
+        const data = {
+          id: uid,
+          email,
+        };
+        const usersRef = firebase.firestore().collection("users");
+        usersRef
+          .doc(uid)
+          .set(data)
+          .then(() => {
+            navigation.navigate("profilesetup", { user: data });
+          })
+          .catch((error) => {
+            alert(error);
+          });
+      })
+      .catch((error) => {
+        alert(error);
+      });
+  };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -39,7 +68,7 @@ const SignUpScreen = ({ navigation }) => {
         <FlatButton
           text="Register"
           onPress={() => {
-            navigation.navigate("profilesetup");
+            onSubmit();
             console.log(email, password);
           }}
         />

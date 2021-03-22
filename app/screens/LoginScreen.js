@@ -1,11 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import { Text, View, StyleSheet, Pressable } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { firebase } from "../config/FireBaseConfig";
 import { COLORS } from "../config/colors";
 import Input from "../components/Input";
 import FlatButton from "../components/button";
 
 const LoginScreen = ({ navigation }) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const onLoginPress = () => {
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .then((response) => {
+        const uid = response.user.uid;
+        const usersRef = firebase.firestore().collection("users");
+        usersRef
+          .doc(uid)
+          .get()
+          .then((firestoreDocument) => {
+            if (!firestoreDocument.exists) {
+              alert("User does not exist anymore.");
+              return;
+            }
+            const user = firestoreDocument.data();
+            navigation.navigate("home", { user });
+          })
+          .catch((error) => {
+            alert(error);
+          });
+      })
+      .catch((error) => {
+        alert(error);
+      });
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.headingContainer}>
@@ -14,9 +45,23 @@ const LoginScreen = ({ navigation }) => {
       </View>
       <View style={styles.textBoxContainer}>
         <Text>{}</Text>
-        <Input label="Username" isPassword={false} />
+        <Input
+          label="Username"
+          isPassword={false}
+          valueFromInput={email}
+          onChangeText={(email) => {
+            setEmail(email);
+          }}
+        />
         <Text>{}</Text>
-        <Input label="Password" isPassword={true} />
+        <Input
+          label="Password"
+          isPassword={true}
+          valueFromInput={password}
+          onChangeText={(password) => {
+            setPassword(password);
+          }}
+        />
         <Pressable
           style={styles.forgotPasswordPressable}
           onPress={() => {
@@ -27,7 +72,7 @@ const LoginScreen = ({ navigation }) => {
         </Pressable>
       </View>
       <View style={styles.buttonContainer}>
-        <FlatButton text="Login" />
+        <FlatButton text="Login" onPress={() => onLoginPress()} />
       </View>
       <View style={styles.signupContainer}>
         <Pressable

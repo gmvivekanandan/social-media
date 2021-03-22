@@ -31,8 +31,6 @@ const ProfileSetupScreen = ({ navigation }) => {
       quality: 1,
     });
 
-    console.log(result);
-
     if (!result.cancelled) {
       setImage(result.uri);
       setimageSelected(true);
