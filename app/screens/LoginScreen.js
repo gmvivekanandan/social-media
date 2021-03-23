@@ -5,10 +5,12 @@ import { firebase } from "../config/FireBaseConfig";
 import { COLORS } from "../config/colors";
 import Input from "../components/Input";
 import FlatButton from "../components/button";
+import { ActivityIndicator } from "react-native";
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const onLoginPress = () => {
     firebase
@@ -26,6 +28,7 @@ const LoginScreen = ({ navigation }) => {
               return;
             }
             const user = firestoreDocument.data();
+            setLoading(false);
             navigation.navigate("home", { user });
           })
           .catch((error) => {
@@ -72,7 +75,13 @@ const LoginScreen = ({ navigation }) => {
         </Pressable>
       </View>
       <View style={styles.buttonContainer}>
-        <FlatButton text="Login" onPress={() => onLoginPress()} />
+        <FlatButton
+          text={loading ? <ActivityIndicator color="#fff" /> : "Login"}
+          onPress={() => {
+            setLoading(true);
+            onLoginPress();
+          }}
+        />
       </View>
       <View style={styles.signupContainer}>
         <Pressable
