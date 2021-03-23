@@ -7,6 +7,8 @@ const Post = (props) => {
   const [iconColor, seticonColor] = useState("black");
   const [likePressed, setlikePressed] = useState(false);
 
+  const { email, id } = props;
+
   return (
     <View style={styles.container}>
       <View style={styles.topSection}>
@@ -15,8 +17,8 @@ const Post = (props) => {
           style={styles.profileImage}
         />
         <View style={styles.innerTextContainer}>
-          <Text style={styles.profileName}>Name</Text>
-          <Text style={styles.postTime}>Time</Text>
+          <Text style={styles.profileName}>{id}</Text>
+          <Text style={styles.postTime}>{email}</Text>
         </View>
         <View style={styles.iconContainer}>
           <Icon

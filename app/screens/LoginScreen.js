@@ -29,6 +29,7 @@ const LoginScreen = ({ navigation }) => {
             }
             const user = firestoreDocument.data();
             setLoading(false);
+            console.log(user);
             navigation.navigate("home", { user });
           })
           .catch((error) => {

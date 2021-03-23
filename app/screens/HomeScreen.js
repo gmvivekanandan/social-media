@@ -4,10 +4,11 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import Post from "../components/Post";
 
 const HomeScreen = ({ route }) => {
+  const { email, id } = route.params.user;
   return (
     <SafeAreaView>
       <ScrollView>
-        <Post />
+        <Post email={email} id={id} />
         <Post />
         <Post />
       </ScrollView>
