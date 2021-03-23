@@ -18,8 +18,8 @@ const FlatButton = (props) => {
 const styles = StyleSheet.create({
   button: {
     borderRadius: 8,
-    paddingVertical: 14,
-    paddingHorizontal: 10,
+    justifyContent: "center",
+    alignItems: "center",
     width: "90%",
     height: 52,
     backgroundColor: COLORS.primaryColor,
