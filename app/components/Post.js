@@ -13,7 +13,10 @@ const Post = (props) => {
     <View style={styles.container}>
       <View style={styles.topSection}>
         <Image
-          source={require("../assets/icon.png")}
+          source={{
+            uri:
+              "https://i.dlpng.com/static/png/5065892-my-profile-icon-png-327283-free-icons-library-profile-icon-png-500_500_preview.png",
+          }}
           style={styles.profileImage}
         />
         <View style={styles.innerTextContainer}>
@@ -60,7 +63,7 @@ const styles = StyleSheet.create({
   },
   topSection: {
     flexDirection: "row",
-    marginBottom: 5,
+    marginBottom: 10,
     marginRight: 15,
   },
   innerTextContainer: {
@@ -72,9 +75,9 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   profileImage: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
+    width: 40,
+    height: 40,
+    borderRadius: 20,
     marginRight: 15,
   },
   iconContainer: {

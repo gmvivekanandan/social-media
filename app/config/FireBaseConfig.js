@@ -10,6 +10,7 @@ const firebaseConfig = {
   storageBucket: "sociale-934e0.appspot.com",
   messagingSenderId: "527584317113",
   appId: "1:527584317113:android:329fc4197fa63d71d2d568",
+  measurementId: "G-2SCJW1Y4GQ",
 };
 
 if (!firebase.apps.length) {
