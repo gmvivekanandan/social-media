@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { View, StyleSheet } from "react-native";
+import { TextInput } from "react-native-paper";
 import OutlineInput from "react-native-outline-input";
 import { COLORS } from "../config/colors";
 
@@ -8,18 +9,13 @@ const Input = (props) => {
 
   return (
     <View style={styles.container}>
-      <OutlineInput
+      <TextInput
+        mode="outlined"
+        selectionColor={COLORS.primaryColor}
+        secureTextEntry={isPassword}
         label={label}
         value={valueFromInput}
         onChangeText={onChangeText}
-        secureTextEntry={isPassword}
-        height={52}
-        activeValueColor={COLORS.secondaryTextColor}
-        activeBorderColor={COLORS.primaryColor}
-        activeLabelColor={COLORS.primaryColor}
-        passiveBorderColor="grey"
-        passiveLabelColor="grey"
-        passiveValueColor={COLORS.secondaryTextColor}
       />
     </View>
   );

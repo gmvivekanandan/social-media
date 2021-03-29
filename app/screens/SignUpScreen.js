@@ -54,7 +54,6 @@ const SignUpScreen = ({ navigation }) => {
             setEmail(email);
           }}
         />
-        <Text>{}</Text>
         <Input
           label="Password"
           isPassword={true}

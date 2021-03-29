@@ -15,7 +15,7 @@ export default function App() {
   const Stack = createStackNavigator();
   const Tab = createBottomTabNavigator();
 
-  const [oldUser, setOldUser] = useState(true);
+  const [oldUser, setOldUser] = useState(false);
 
   return (
     <NavigationContainer>
