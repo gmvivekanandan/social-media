@@ -10,12 +10,13 @@ import ProfileSetupScreen from "./app/screens/ProfileSetupScreen";
 import HomeScreen from "./app/screens/HomeScreen";
 import ProfileScreen from "./app/screens/ProfileScreen";
 import { COLORS } from "./app/config/colors";
+import SearchScreen from "./app/screens/SearchScreen";
 
 export default function App() {
   const Stack = createStackNavigator();
   const Tab = createBottomTabNavigator();
 
-  const [oldUser, setOldUser] = useState(false);
+  const [oldUser, setOldUser] = useState(true);
 
   return (
     <NavigationContainer>
@@ -29,6 +30,8 @@ export default function App() {
                 iconName = focused ? "home" : "home";
               } else if (route.name === "profile") {
                 iconName = focused ? "torso" : "torso";
+              } else if (route.name === "search") {
+                iconName = focused ? "magnifying-glass" : "magnifying-glass";
               }
 
               return <Icon name={iconName} size={size} color={color} />;
@@ -41,6 +44,7 @@ export default function App() {
           }}
         >
           <Tab.Screen name="home" component={HomeScreen} />
+          <Tab.Screen name="search" component={SearchScreen} />
           <Tab.Screen name="profile" component={ProfileScreen} />
         </Tab.Navigator>
       ) : (
