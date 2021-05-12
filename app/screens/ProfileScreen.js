@@ -1,11 +1,35 @@
-import React from "react";
-import { StyleSheet, Text, View, Image, Button } from "react-native";
+import React, { useState, useEffect } from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  Button,
+  ScrollView,
+  FlatList,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { COLORS } from "../config/colors";
 import Icon from "react-native-vector-icons/Ionicons";
-import { ScrollView } from "react-native-gesture-handler";
+import { firebase } from "../config/FireBaseConfig";
 
 const ProfileScreen = () => {
+  const [posts, setPosts] = useState([]);
+  useEffect(() => {
+    const post = firebase
+      .firestore()
+      .collection("users")
+      .doc("xU5pJ7oVeoRR79VYXYYYoHxaeot2")
+      .collection("posts")
+      .onSnapshot((snapShot) => {
+        const postArray = [];
+        snapShot.forEach((docSnapShot) => {
+          postArray.push({ ...docSnapShot.data(), key: docSnapShot.id });
+        });
+        setPosts(postArray);
+      });
+    return () => post();
+  }, []);
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
@@ -51,37 +75,12 @@ const ProfileScreen = () => {
           <Text style={styles.postHeading}>Posts</Text>
         </View>
         <View style={styles.imageContainer}>
-          <Image
-            source={require("../assets/index.jpeg")}
-            style={styles.image}
-          />
-          <Image
-            source={require("../assets/index.jpeg")}
-            style={styles.image}
-          />
-          <Image
-            source={require("../assets/index.jpeg")}
-            style={styles.image}
-          />
-          <Image
-            source={require("../assets/index.jpeg")}
-            style={styles.image}
-          />
-          <Image
-            source={require("../assets/index.jpeg")}
-            style={styles.image}
-          />
-          <Image
-            source={require("../assets/index.jpeg")}
-            style={styles.image}
-          />
-          <Image
-            source={require("../assets/index.jpeg")}
-            style={styles.image}
-          />
-          <Image
-            source={require("../assets/index.jpeg")}
-            style={styles.image}
+          <FlatList
+            data={posts}
+            numColumns={3}
+            renderItem={({ item }) => (
+              <Image source={{ uri: item.imageurl }} style={styles.image} />
+            )}
           />
         </View>
       </ScrollView>

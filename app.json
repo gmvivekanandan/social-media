@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "socialmedia",
-    "slug": "socialmedia",
+    "name": "sociale",
+    "slug": "sociale",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./app/assets/logo.png",
@@ -27,6 +27,7 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": ""
   }
 }

@@ -7,7 +7,7 @@ const Post = (props) => {
   const [iconColor, seticonColor] = useState("black");
   const [likePressed, setlikePressed] = useState(false);
 
-  const { email, id } = props;
+  const { email, id, url } = props;
 
   return (
     <View style={styles.container}>
@@ -37,10 +37,7 @@ const Post = (props) => {
         </View>
       </View>
       <View style={styles.midSection}>
-        <Image
-          source={require("../assets/index.jpeg")}
-          style={styles.mainImage}
-        />
+        <Image source={{ uri: url }} style={styles.mainImage} />
       </View>
       <View style={styles.bottomSection}>
         <TextInput placeholder="say something" style={styles.commentTextBox} />
