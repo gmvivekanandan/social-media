@@ -27,7 +27,7 @@
     "react-native-keyboard-aware-scroll-view": "^0.9.3",
     "react-native-outline-input": "^1.0.8",
     "react-native-paper": "^4.7.2",
-    "react-native-reanimated": "~2.3.0",
+    "react-native-reanimated": "~2.10.0",
     "react-native-safe-area-context": "3.1.9",
     "react-native-screens": "~2.15.2",
     "react-native-vector-icons": "^8.1.0",
